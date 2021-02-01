@@ -11,7 +11,9 @@ DownloadNaturetalkers <- function(){
 
   # read input parameters
   inpuParametersPath <- system.file("parameters", "serverLinks.txt", package = "TreeTalkersCheck")
+  suppressWarnings(
   inpuParameters <- read.table(inpuParametersPath, header = T)
+  )
   inpuParameters$server <- as.character(inpuParameters$server)
   inpuParameters$site   <- as.character(inpuParameters$site)
   inpuParameters$cloud  <- basename(dirname(inpuParameters$server ))
@@ -21,7 +23,7 @@ DownloadNaturetalkers <- function(){
   outfile <- file.path("C:", "TreeTalkerDB", "TT_CloudDB.csv")
   if(file.exists(outfile))file.remove(outfile)
   if(isFALSE(dir.exists(outdir))){dir.create(outdir)}
-  outFileNames <- paste0(outdir, "/", inpuParameters$cloud, ".txt")
+  outFileNames <- paste0(outdir, "/", paste0(inpuParameters$cloud, "_", inpuParameters$site), ".txt")
   for (i in 1:nrow(inpuParameters))  {
   download.file(inpuParameters$server[i], outFileNames[i])
   file_i <- read.table(outFileNames[i], sep = ";", col.names = paste0("V", 1:70), fill = T)
