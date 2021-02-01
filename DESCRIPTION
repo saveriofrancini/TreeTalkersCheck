@@ -7,6 +7,20 @@ Authors@R:
            role = c("aut", "cre"),
            email = "saverio.francini@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0001-6991-0289"))
+    person(given = "Ilaria",
+           family = "Zorzi",
+           role = c("aut", "cre"),
+           email = "ilaria.zorzi@unifi.it", 
+    person(given = "Gherardo",
+           family = "Chirici",
+           role = c("aut", "cre"),
+           email = "gchirici@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-0669-5726"))
+    person(given = "Claudia",
+           family = "Cocozza",
+           role = c("aut", "cre"),
+           email = "claudia.cocozza@unifi.it",
+           comment = c(ORCID = "https://orcid.org/0000-0002-0167-8863"))
 Description: The Tree Talker Check software (TTC) serves to daily monitoring of TTs and Clouds, producing automatically reports with their status. TTC reports include graphs and DBs that can be used for further analysis. TTC is an alert system that allows a user to act quickly if malfunctions occur. For example, a sensor is registering weird data, the cloud has no signal or to much pending records or simply the battery level is too low and need to be recharged. 
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
