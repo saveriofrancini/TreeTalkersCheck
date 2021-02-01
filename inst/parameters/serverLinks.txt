@@ -1,4 +1,4 @@
 server site
-https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/site1.txt site1
-https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/site2.txt site2
-https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/site3.txt site3
+https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/cloud1/site1.txt site1
+https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/cloud1/site2.txt site2
+https://github.com/saveriofrancini/TreeTalkersCheck/blob/main/inst/cloudTest/cloud1/site3.txt site3
