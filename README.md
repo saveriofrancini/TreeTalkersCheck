@@ -25,7 +25,7 @@ To do it, paste the code below in the R Console and press enter
 #### Execute the package
 To do it, paste the code below in the R Console and press enter
 
-`system(paste0("R CMD BATCH ", system.file("run", "run.R", package = "TreeTalkersCheck")))`
+`source(system.file("run", "run.R", package = "TreeTalkersCheck"))`
 
 #### Congratulations!
 If everything went fine, outputs are now in *C:\TreeTalkerDB*. 
