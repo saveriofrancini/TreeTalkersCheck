@@ -1,0 +1,131 @@
+---
+title: "`r as.character(read.table(file.path(tempdir(), 'whichDay.txt'))[1,1])`"
+subtitle: <h1>This report was automatically produced by the **TreeTalkerCheck** package</h1>
+author:
+  - Saverio Francini
+  - Ilaria Zorzi
+  - Claudia Cocozza
+  - Gherardo Chirici
+---
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{0pt}
+
+```{r setup, include=F, echo = F,  fig.align="left", results="asis"}
+knitr::opts_chunk$set(echo = F, warning = FALSE)
+```
+
+# 1. Detecting issues
+
+```{r 1, message=FALSE, results="asis"}
+library(ggplot2)
+whichDay <- as.character(read.table(file.path(tempdir(), 'whichDay.txt'))[1,1])
+
+#input_path <- file.path("C:", "out", "1")
+input_files_csv <- list.files("C:/TreeTalkerDB/dailyDB", full.names = T, pattern = ".csv")
+input_files_csv <- input_files_csv[grepl(whichDay, input_files_csv)]
+
+# Read input files
+lista_files_read <- lapply(input_files_csv, read.table, sep = ";", header = T)
+
+cloudDB <- lista_files_read[[1]]
+cloudAlert <- lista_files_read[[2]]
+TTdb <- lista_files_read[[3]]
+TTAlert <- lista_files_read[[4]]
+
+if(nrow(TTAlert)==0){
+cat("No issues related with the TT where automatically identified")  
+}else{
+cat("The number of TT issues are", nrow(TTAlert))
+knitr::kable(TTAlert, caption = "Issues related with TT")
+}
+
+cat("  \n")
+cat("  \n")
+cat("  \n")
+
+
+if(nrow(cloudAlert)==0){
+cat("No issues related with the cloud where automatically identified")  
+}else{
+cat("The number of cloud issues are", nrow(cloudAlert))
+knitr::kable(cloudAlert, caption = "Issues related with clouds")
+}
+
+cat("  \n")
+
+cat("  \n")
+
+DbTT_complete <- read.table(
+  system.file("parameters", "TTId.txt", package = "TreeTalkersCheck")
+  , sep = ";", header = T)
+colnames(DbTT_complete)[1] <- "TTid"
+DbTT_missing  <- as.character(DbTT_complete$TTid[DbTT_complete$TTid%in%TTdb$TTid==F])
+
+cat("  \n")
+cat("The lower level of battery on", whichDay, "is", min(TTdb$batteryLevel))
+cat("  \n")
+cat("  \n")
+
+cat("On the", whichDay, "the total number of devices that sent the data are", length(unique(TTdb$TTid))) 
+cat("  \n")
+cat("  \n")
+cat("On the", whichDay, "the total number of devices that didn't send the data are", length(DbTT_missing)) 
+cat("  \n")
+cat("  \n")
+cat("On the", whichDay, "The devices that didn't send the data are", DbTT_missing) 
+cat("  \n")
+
+
+
+```
+
+
+# 2. TT Daily graphs
+
+The daily graphs are important to understand if the sensors are working properly and to detect the daily trend of temperature, sapflux density, growth rate per each site.
+
+## 2.1. Temperature
+
+```{r Temperature, echo=FALSE, fig.show='hold', out.width='50%', fig.align='center', out.extra=NULL, fig.cap ="Daily temperature"}
+
+temperaturePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots")), pattern = "temperature", full.names = T)
+
+knitr::include_graphics(temperaturePlots)
+```
+
+## 2.2. Growth Rate
+
+```{r growthRateR, echo=FALSE, fig.show='hold',out.width='25%', fig.align='center', out.extra=NULL, fig.cap = "Daily Growth Rate"}
+
+growthRatePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots"), "growthRatePerTT"),  full.names = T)
+
+knitr::include_graphics(growthRatePlots)
+```
+
+## 2.3. Sapflux Density
+
+```{r Sapflow, echo=FALSE, out.width='50%', fig.show='hold', fig.align='center', out.extra=NULL, fig.cap ="Daily Sapflux Density"}
+
+SapfluxDensityPlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots")), pattern = "sapFlux", full.names = T)
+
+knitr::include_graphics(SapfluxDensityPlots)
+```
+
+## 2.4. Battery Level
+
+```{r Battery, echo=FALSE, out.width='50%', fig.show='hold', fig.align='center', out.extra=NULL, fig.cap ="Daily Battery Level"}
+
+batteryLevelPlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots")), pattern = "battery", full.names = T)
+
+knitr::include_graphics(file.path(batteryLevelPlots))
+```
+
+# 3.Cloud battery level
+
+```{r cloudBattery, echo=FALSE, out.width='100%', fig.show='hold', fig.align='center', out.extra=NULL, fig.cap ="Cloud daily battery level"}
+
+batteryLevelPlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots")), pattern = "cloudBattery", full.names = T)
+
+knitr::include_graphics(file.path(batteryLevelPlots))
+```

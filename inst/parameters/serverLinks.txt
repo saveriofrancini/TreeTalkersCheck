@@ -1,0 +1,6 @@
+server site
+http://ittn.altervista.org/C0200099/ttcloud.txt R
+http://ittn.altervista.org/C0200100/ttcloud.txt S1
+http://ittn.altervista.org/C0200101/ttcloud.txt S2
+http://ittn.altervista.org/C0200102/ttcloud.txt V1
+http://ittn.altervista.org/C0200103/ttcloud.txt V2
