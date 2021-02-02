@@ -248,23 +248,23 @@ for (pianta_i in piante) {
   db_pianta_i <- TTdb_today[TTdb_today$TTid==pianta_i,]
   db_pianta_i$timeStamp <- as.double(db_pianta_i$timeStamp)
 
-  growthRateMin <- min(db_pianta_i$growth)
-  growthRateMax <- max(db_pianta_i$growth)
+  growthRateMin <- min(db_pianta_i$stemDiameterVariation)
+  growthRateMax <- max(db_pianta_i$stemDiameterVariation)
 
   # scaleFUN <- function(x) sprintf("%.2f", x)
   scaleFUN <- function(x) {
   (x-growthRateMin)/(growthRateMax-growthRateMin)
   }
 
-  db_pianta_i$growth <- scaleFUN(db_pianta_i$growth)
+  db_pianta_i$stemDiameterVariation <- scaleFUN(db_pianta_i$stemDiameterVariation)
 
   if(growthRateMin == growthRateMax){
-    db_pianta_i$growth <- rep(0.5, length(db_pianta_i$growth))
+    db_pianta_i$stemDiameterVariation <- rep(0.5, length(db_pianta_i$stemDiameterVariation))
   }
 
   #plot
 
-  ggplot(db_pianta_i, aes(x=timeStamp, y=growth, group=TTid)) +
+  ggplot(db_pianta_i, aes(x=timeStamp, y=stemDiameterVariation, group=TTid)) +
     geom_line()+
     geom_point(size = 2.2)+
     #scale_y_continuous(limits = c(-1, 1)) +
@@ -294,7 +294,7 @@ for (pianta_i in piante) {
     scale_y_continuous(breaks = seq(0, 1, 0.2) )+
     scale_x_continuous (limits = c(0, 24), breaks = seq(0, 24, 6) )
 
-  ggsave(file.path(outPiante, paste0("stamDiameterVariation", pianta_i, ".PNG")), width = 10, height = 6)
+  ggsave(file.path(outPiante, paste0("stemDiameterVariation", pianta_i, ".PNG")), width = 10, height = 6)
 }
 
 # plot cloud

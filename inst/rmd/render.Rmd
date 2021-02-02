@@ -83,7 +83,7 @@ cat("  \n")
 
 # 2. TT Daily graphs
 
-The daily graphs are important to understand if the sensors are working properly and to detect the daily trend of temperature, sapflux density and stam diameter variation per each site.
+The daily graphs are important to understand if the sensors are working properly and to detect the daily trend of temperature, sapflux density and stem diameter variation per each site.
 
 ## 2.1. Temperature
 
@@ -94,11 +94,11 @@ temperaturePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", 
 knitr::include_graphics(temperaturePlots)
 ```
 
-## 2.2. Stam diameter variation
+## 2.2. Stem diameter variation
 
-```{r growthRateR, echo=FALSE, fig.show='hold',out.width='25%', fig.align='center', out.extra=NULL, fig.cap = "Daily stam diameter variation"}
+```{r growthRateR, echo=FALSE, fig.show='hold',out.width='25%', fig.align='center', out.extra=NULL, fig.cap = "Daily stem diameter variation"}
 
-growthRatePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots"), "stamDiameterVariationPerTT"),  full.names = T)
+growthRatePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots"), "stemDiameterVariationPerTT"),  full.names = T)
 
 knitr::include_graphics(growthRatePlots)
 ```
