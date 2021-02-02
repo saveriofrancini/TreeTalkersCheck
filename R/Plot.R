@@ -248,17 +248,17 @@ for (pianta_i in piante) {
   db_pianta_i <- TTdb_today[TTdb_today$TTid==pianta_i,]
   db_pianta_i$timeStamp <- as.double(db_pianta_i$timeStamp)
 
-  growthRateMin <- min(db_pianta_i$stemDiameterVariation)
-  growthRateMax <- max(db_pianta_i$stemDiameterVariation)
+  stemDiameterVariationMin <- min(db_pianta_i$stemDiameterVariation)
+  stemDiameterVariationMax <- max(db_pianta_i$stemDiameterVariation)
 
   # scaleFUN <- function(x) sprintf("%.2f", x)
   scaleFUN <- function(x) {
-  (x-growthRateMin)/(growthRateMax-growthRateMin)
+  (x-stemDiameterVariationMin)/(stemDiameterVariationMax-stemDiameterVariationMin)
   }
 
   db_pianta_i$stemDiameterVariation <- scaleFUN(db_pianta_i$stemDiameterVariation)
 
-  if(growthRateMin == growthRateMax){
+  if(stemDiameterVariationMin == stemDiameterVariationMax){
     db_pianta_i$stemDiameterVariation <- rep(0.5, length(db_pianta_i$stemDiameterVariation))
   }
 
