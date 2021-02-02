@@ -287,9 +287,9 @@ for (pianta_i in piante) {
       ) +
     annotation_custom(grobTree(textGrob(paste0("TT ", pianta_i), x=0.5,  y=0.95,
                                         gp=gpar(col="darkblue", fontsize=34, fontface="bold"))))+
-    annotation_custom(grobTree(textGrob(paste0("Min = ", round(growthRateMin, 3)), x=0.25,  y=0.2,
+    annotation_custom(grobTree(textGrob(paste0("Min = ", round(stemDiameterVariationMin, 3)), x=0.25,  y=0.2,
                                         gp=gpar(col="darkblue", fontsize=30))))+
-    annotation_custom(grobTree(textGrob(paste0("Max = ", round(growthRateMax, 3)), x=0.25,  y=0.1,
+    annotation_custom(grobTree(textGrob(paste0("Max = ", round(stemDiameterVariationMax, 3)), x=0.25,  y=0.1,
                                         gp=gpar(col="darkblue", fontsize=30))))+
     scale_y_continuous(breaks = seq(0, 1, 0.2) )+
     scale_x_continuous (limits = c(0, 24), breaks = seq(0, 24, 6) )
