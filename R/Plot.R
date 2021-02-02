@@ -114,7 +114,7 @@ ggsave(file.path(outPath, "temperature.PNG"), width = 10, height = 6)
 ggplot(TTdb_today, aes(timeStamp, batteryLevel, colour = Location.x), fill = TTid) +
   geom_point(size = 0.8) +
   xlab("Hour of the day") +
-  ylab("Battery level (mV)")+
+  ylab("Battery level (V)")+
 
   theme(
     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
@@ -212,7 +212,7 @@ for (sito_i in siti) {
     geom_point(aes(color=TTid))+
     #scale_y_continuous(limits = c(3.2, 4.4)) +
     xlab("Hour of the day") +
-    ylab("Battery level (mV)")+
+    ylab("Battery level (V)")+
     theme(
       panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                       colour = "white"),
@@ -307,7 +307,7 @@ cloud_db_today$timeStamp <- strftime(as.POSIXct(as.character(cloud_db_today$time
 ggplot(cloud_db_today, aes(timeStamp, Battery, colour = Location.x), fill = Location.x) +
   geom_point(size = 2) +
   xlab("Hour of the day")+
-  ylab("Cloud battery level (V)")+
+  ylab("Cloud battery level (mV)")+
   theme(
     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                     colour = "white"),
