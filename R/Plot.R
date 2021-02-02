@@ -238,7 +238,7 @@ for (sito_i in siti) {
 }
 
 #growth rate graph per each TT
-outPiante <- file.path(outPath, "stamDiameterVariationPerTT")#
+outPiante <- file.path(outPath, "stemDiameterVariationPerTT")#
 if (dir.exists(outPiante)==F) dir.create(outPiante)
 
 piante <- as.character(unique(TTdb_today$TTid))
