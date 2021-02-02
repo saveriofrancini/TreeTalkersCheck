@@ -60,9 +60,9 @@ dbTT_Today <- cbind(dbTT_Today, sapFluxDensity)
 # growth rate calculation
 #growthRate <- 18.2823+(-0.0006*dbTT_Today$growth)+(6.9143e-009*dbTT_Today$growth^2)+(-3.0237e-14*dbTT_Today$growth^3)
 
-growthRate <- (0.000000008*(dbTT_Today$growth^2))-(0.0016*dbTT_Today$growth)+89.032
+stamDiameterVariation <- (0.000000008*(dbTT_Today$growth^2))-(0.0016*dbTT_Today$growth)+89.032
 
-dbTT_Today <- cbind(dbTT_Today, growthRate)
+dbTT_Today <- cbind(dbTT_Today, stamDiameterVariation)
 
 out_dir <- file.path("C:", "TreeTalkerDB", "dailyDB")
 if(dir.exists(out_dir)==F) dir.create(out_dir)

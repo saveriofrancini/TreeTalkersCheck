@@ -32,6 +32,7 @@ library(grid)
 ggplot(TTdb_today, aes(timeStamp, temperature, colour = Location.x), fill = TTid) +
  geom_point(size = 0.8) +
   xlab("Hour of the day")+
+  ylab("temperature (°C)")+
  theme(
     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                     colour = "white"),
@@ -55,58 +56,58 @@ ggsave(file.path(outPath, "temperature.PNG"), width = 10, height = 6)
 
 #Growth rate trend in the different sites
 
-ggplot(TTdb_today, aes(timeStamp, growthRate, colour = Location.x), fill = TTid) +
-  geom_point(size = 0.8) +
-  xlab("Hour of the day") +
-  theme(
-    panel.grid.major = element_line(size = 0.2, linetype = 'solid',
-                                    colour = "white"),
-    panel.grid.minor = element_line(size = 0.4, linetype = 'solid',
-                                    colour = "white"),
-    panel.background = element_rect(fill = "lightgrey",
-                                    colour = "darkblue",
-                                    size = 1.2, linetype = "solid"),
-    panel.grid.major.x = element_blank(),
-    #plot.title = element_text(size=26, face="bold", vjust = 0, hjust = 0),
-    axis.title.x = element_text(size=18),
-    axis.title.y = element_text(size=18,  vjust = 1),
-    axis.text.x = element_text(face="bold", color = "black",
-                                       size=14, vjust = 1),
-            axis.text.y = element_text(face="bold", color = "black",
-                                       size=14),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 15)
-    )
+## ggplot(TTdb_today, aes(timeStamp, growthRate, colour = Location.x), fill = TTid) +
+##   geom_point(size = 0.8) +
+##   xlab("Hour of the day") +
+##   theme(
+##     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
+##                                     colour = "white"),
+##     panel.grid.minor = element_line(size = 0.4, linetype = 'solid',
+##                                     colour = "white"),
+##     panel.background = element_rect(fill = "lightgrey",
+##                                     colour = "darkblue",
+##                                     size = 1.2, linetype = "solid"),
+##     panel.grid.major.x = element_blank(),
+##     #plot.title = element_text(size=26, face="bold", vjust = 0, hjust = 0),
+##     axis.title.x = element_text(size=18),
+##     axis.title.y = element_text(size=18,  vjust = 1),
+##     axis.text.x = element_text(face="bold", color = "black",
+##                                        size=14, vjust = 1),
+##             axis.text.y = element_text(face="bold", color = "black",
+##                                        size=14),
+##     legend.title = element_blank(),
+##     legend.text = element_text(size = 15)
+##     )
+##
+## ggsave(file.path(outPath, "growthRate.PNG"), width = 10, height = 6)
 
-ggsave(file.path(outPath, "growthRate.PNG"), width = 10, height = 6)
 
 #Sapflux trend in the different sites
 
-ggplot(TTdb_today, aes(timeStamp, sapFluxDensity, colour = Location.x), fill = TTid) +
-  geom_point(size = 0.8) +
-  xlab("Hour of the day") +
-  theme(
-    panel.grid.major = element_line(size = 0.2, linetype = 'solid',
-                                    colour = "white"),
-    panel.grid.minor = element_line(size = 0.4, linetype = 'solid',
-                                    colour = "white"),
-    panel.background = element_rect(fill = "lightgrey",
-                                    colour = "darkblue",
-                                    size = 1.2, linetype = "solid"),
-    panel.grid.major.x = element_blank(),
-    #plot.title = element_text(size=26, face="bold", vjust = 0, hjust = 0),
-    axis.title.x = element_text(size=18),
-    axis.title.y = element_text(size=18,  vjust = 1),
-    axis.text.x = element_text(face="bold", color = "black",
-                                       size=14, vjust = 1),
-            axis.text.y = element_text(face="bold", color = "black",
-                                       size=14),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 15)
-    )
-
-ggsave(file.path(outPath, "sapFluxDensity.PNG"), width = 10, height = 6)
-
+## ggplot(TTdb_today, aes(timeStamp, sapFluxDensity, colour = Location.x), fill = TTid) +
+##   geom_point(size = 0.8) +
+##   xlab("Hour of the day") +
+##   theme(
+##     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
+##                                     colour = "white"),
+##     panel.grid.minor = element_line(size = 0.4, linetype = 'solid',
+##                                     colour = "white"),
+##     panel.background = element_rect(fill = "lightgrey",
+##                                     colour = "darkblue",
+##                                     size = 1.2, linetype = "solid"),
+##     panel.grid.major.x = element_blank(),
+##     #plot.title = element_text(size=26, face="bold", vjust = 0, hjust = 0),
+##     axis.title.x = element_text(size=18),
+##     axis.title.y = element_text(size=18,  vjust = 1),
+##     axis.text.x = element_text(face="bold", color = "black",
+##                                        size=14, vjust = 1),
+##             axis.text.y = element_text(face="bold", color = "black",
+##                                        size=14),
+##     legend.title = element_blank(),
+##     legend.text = element_text(size = 15)
+##     )
+##
+## ggsave(file.path(outPath, "sapFluxDensity.PNG"), width = 10, height = 6)
 
 #Battery trend in the different sites
 
@@ -232,7 +233,7 @@ for (sito_i in siti) {
 }
 
 #growth rate graph per each TT
-outPiante <- file.path(outPath, "growthRatePerTT")
+outPiante <- file.path(outPath, "growthRatePerTT")# stamDiameterVariation
 if (dir.exists(outPiante)==F) dir.create(outPiante)
 
 piante <- as.character(unique(TTdb_today$TTid))
