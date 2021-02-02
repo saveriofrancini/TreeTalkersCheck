@@ -2,10 +2,10 @@
 title: "`r as.character(read.table(file.path(tempdir(), 'whichDay.txt'))[1,1])`"
 subtitle: <h1>This report was automatically produced by the **TreeTalkerCheck** package</h1>
 author:
-  - Saverio Francini
   - Ilaria Zorzi
-  - Claudia Cocozza
+  - Saverio Francini
   - Gherardo Chirici
+  - Claudia Cocozza
 ---
 
 \setlength\parindent{0pt}
@@ -83,7 +83,7 @@ cat("  \n")
 
 # 2. TT Daily graphs
 
-The daily graphs are important to understand if the sensors are working properly and to detect the daily trend of temperature, sapflux density, growth rate per each site.
+The daily graphs are important to understand if the sensors are working properly and to detect the daily trend of temperature, sapflux density and stam diameter variation per each site.
 
 ## 2.1. Temperature
 
@@ -94,11 +94,11 @@ temperaturePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", 
 knitr::include_graphics(temperaturePlots)
 ```
 
-## 2.2. Growth Rate
+## 2.2. Stam diameter variation
 
-```{r growthRateR, echo=FALSE, fig.show='hold',out.width='25%', fig.align='center', out.extra=NULL, fig.cap = "Daily Growth Rate"}
+```{r growthRateR, echo=FALSE, fig.show='hold',out.width='25%', fig.align='center', out.extra=NULL, fig.cap = "Daily stam diameter variation"}
 
-growthRatePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots"), "growthRatePerTT"),  full.names = T)
+growthRatePlots <- list.files(file.path("C:/", "TreeTalkerDB", "dailyReports", paste0(whichDay, "_plots"), "stamDiameterVariationPerTT"),  full.names = T)
 
 knitr::include_graphics(growthRatePlots)
 ```

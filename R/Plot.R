@@ -114,6 +114,8 @@ ggsave(file.path(outPath, "temperature.PNG"), width = 10, height = 6)
 ggplot(TTdb_today, aes(timeStamp, batteryLevel, colour = Location.x), fill = TTid) +
   geom_point(size = 0.8) +
   xlab("Hour of the day") +
+  ylab("Battery level (mV)")+
+
   theme(
     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                     colour = "white"),
@@ -150,6 +152,7 @@ for (sito_i in siti) {
     geom_point(aes(color=TTid))+
     #scale_y_continuous(limits = c(0, 30)) +
     xlab("Hour of the day") +
+    ylab("temperature (°C)")+
     theme(
       panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                       colour = "white"),
@@ -179,6 +182,7 @@ for (sito_i in siti) {
     geom_point(aes(color=TTid))+
     #scale_y_continuous(limits = c(-2, 8)) +
     xlab("Hour of the day") +
+    ylab("sapfluxdensity (l dm–2 h–1)")+
     theme(
       panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                       colour = "white"),
@@ -208,6 +212,7 @@ for (sito_i in siti) {
     geom_point(aes(color=TTid))+
     #scale_y_continuous(limits = c(3.2, 4.4)) +
     xlab("Hour of the day") +
+    ylab("Battery level (mV)")+
     theme(
       panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                       colour = "white"),
@@ -233,7 +238,7 @@ for (sito_i in siti) {
 }
 
 #growth rate graph per each TT
-outPiante <- file.path(outPath, "growthRatePerTT")# stamDiameterVariation
+outPiante <- file.path(outPath, "stamDiameterVariationPerTT")#
 if (dir.exists(outPiante)==F) dir.create(outPiante)
 
 piante <- as.character(unique(TTdb_today$TTid))
@@ -243,23 +248,23 @@ for (pianta_i in piante) {
   db_pianta_i <- TTdb_today[TTdb_today$TTid==pianta_i,]
   db_pianta_i$timeStamp <- as.double(db_pianta_i$timeStamp)
 
-  growthRateMin <- min(db_pianta_i$growthRate)
-  growthRateMax <- max(db_pianta_i$growthRate)
+  growthRateMin <- min(db_pianta_i$growth)
+  growthRateMax <- max(db_pianta_i$growth)
 
   # scaleFUN <- function(x) sprintf("%.2f", x)
   scaleFUN <- function(x) {
   (x-growthRateMin)/(growthRateMax-growthRateMin)
   }
 
-  db_pianta_i$growthRate <- scaleFUN(db_pianta_i$growthRate)
+  db_pianta_i$growth <- scaleFUN(db_pianta_i$growth)
 
   if(growthRateMin == growthRateMax){
-    db_pianta_i$growthRate <- rep(0.5, length(db_pianta_i$growthRate))
+    db_pianta_i$growth <- rep(0.5, length(db_pianta_i$growth))
   }
 
   #plot
 
-  ggplot(db_pianta_i, aes(x=timeStamp, y=growthRate, group=TTid)) +
+  ggplot(db_pianta_i, aes(x=timeStamp, y=growth, group=TTid)) +
     geom_line()+
     geom_point(size = 2.2)+
     #scale_y_continuous(limits = c(-1, 1)) +
@@ -289,7 +294,7 @@ for (pianta_i in piante) {
     scale_y_continuous(breaks = seq(0, 1, 0.2) )+
     scale_x_continuous (limits = c(0, 24), breaks = seq(0, 24, 6) )
 
-  ggsave(file.path(outPiante, paste0("growthRate", pianta_i, ".PNG")), width = 10, height = 6)
+  ggsave(file.path(outPiante, paste0("stamDiameterVariation", pianta_i, ".PNG")), width = 10, height = 6)
 }
 
 # plot cloud
@@ -302,6 +307,7 @@ cloud_db_today$timeStamp <- strftime(as.POSIXct(as.character(cloud_db_today$time
 ggplot(cloud_db_today, aes(timeStamp, Battery, colour = Location.x), fill = Location.x) +
   geom_point(size = 2) +
   xlab("Hour of the day")+
+  ylab("Cloud battery level (V)")+
   theme(
     panel.grid.major = element_line(size = 0.2, linetype = 'solid',
                                     colour = "white"),
