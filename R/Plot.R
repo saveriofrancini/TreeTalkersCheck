@@ -19,7 +19,7 @@ TTdirectory <- file.path("C:/", "TreeTalkerDB")
 outPath <- file.path(TTdirectory, "dailyReports", paste0(whichDay, "_plots"))
 if(dir.exists(outPath)==F)dir.create(outPath)
 
-# reading data
+# data reading
 TTdb_today <- read.table(file.path(TTdirectory, "dailyDB", paste0(whichDay, "_TT.csv")), header = T, row.names = NULL, sep = ";")
 TTdb_today$timeStamp <- strftime(as.POSIXct(as.character(TTdb_today$timeStamp)), format="%H")
 
