@@ -10,7 +10,7 @@
 
 ## Citation
 
-> Ilaria Zorzi, Saverio Francini*, Gherardo Chirici, Claudia Cocozza (in review). The TreeTalkersCheck R package: an automatic daily routine to check the functionality of TreeTalker devices. Dendrochronologia
+> Ilaria Zorzi, Saverio Francini*, Gherardo Chirici, Claudia Cocozza (in review). The TreeTalkersCheck R package: an automatic daily routine to check the functionality of TreeTalker devices. Ecologial Informatics
 
 <br><br>
 
