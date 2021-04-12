@@ -9,26 +9,29 @@
 #' TreeTalkersCheck()
 #' TreeTalkersCheck("2020-09-16")
 
-TreeTalkersCheck = function(whichDay=Sys.Date()-1){
-#------------------------------------------------------------------------------#
-checkRequirements(whichDay)
-#------------------------------------------------------------------------------#
-DownloadNaturetalkers()
-#------------------------------------------------------------------------------#
-dbs <- ReadServerData()
-#------------------------------------------------------------------------------#
-cloudCheck <- checkCloud(dbs[[1]], whichDay)
-#------------------------------------------------------------------------------#
-TTCheck <- checkTT(dbs[[2]], whichDay)
-#------------------------------------------------------------------------------#
-suppressWarnings(Plot(whichDay))
-#------------------------------------------------------------------------------#
-for (i in 1:2) {
-suppressWarnings(
-rmarkdown::render(
-system.file("rmd", "render.Rmd", package = "TreeTalkersCheck"),
-output_format = c("html_document", "word_document")[i],
-output_file = paste0(whichDay, c(".html", ".docx"))[i],
-output_dir = file.path(file.path("C:", "TreeTalkerDB"), "dailyReports")))}
-#------------------------------------------------------------------------------#
+TreeTalkersCheck = function(whichDay = Sys.Date() - 1) {
+  #------------------------------------------------------------------------------#
+  checkRequirements(whichDay)
+  #------------------------------------------------------------------------------#
+  DownloadNaturetalkers()
+  #------------------------------------------------------------------------------#
+  dbs <- ReadServerData()
+  #------------------------------------------------------------------------------#
+  cloudCheck <- checkCloud(dbs[[1]], whichDay)
+  #------------------------------------------------------------------------------#
+  TTCheck <- checkTT(dbs[[2]], whichDay)
+  #------------------------------------------------------------------------------#
+  suppressWarnings(Plot(whichDay))
+  #------------------------------------------------------------------------------#
+  for (i in 1:2) {
+    suppressWarnings(
+      rmarkdown::render(
+        system.file("rmd", "render.Rmd", package = "TreeTalkersCheck"),
+        output_format = c("html_document", "word_document")[i],
+        output_file = paste0(whichDay, c(".html", ".docx"))[i],
+        output_dir = file.path(file.path("C:", "TreeTalkerDB"), "dailyReports")
+      )
+    )
+  }
+  #------------------------------------------------------------------------------#
 }

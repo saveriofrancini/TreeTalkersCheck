@@ -6,11 +6,11 @@
 
 <br><br>
 
-## [Manuscript](https://www.topolino.it/character/pluto/) 
+## [Manuscript](https://doi.org/10.1016/j.ecoinf.2021.101433) 
 
 ## Citation
 
-> Ilaria Zorzi, Saverio Francini*, Gherardo Chirici, Claudia Cocozza (in review). The TreeTalkersCheck R package: an automatic daily routine to check the functionality of TreeTalker devices. Ecological Informatics
+> Zorzi, I., Francini, S., Chirici, G., & Cocozza, C. (2021). The TreeTalkersCheck R package: An automatic daily routine to check physiological traits of trees in the forest. Ecological Informatics, 101433. https://doi.org/10.1016/j.ecoinf.2021.101433
 
 <br><br>
 
